@@ -1,23 +1,10 @@
 /**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
-
-/**
  * Define Global Variables
 */
 const nav = document.querySelector("#nav_links");
 const sections = document.querySelectorAll("section");
+
+/*identifying the active section */
 
 function activeSection() {
     maxSection = sections[0];
@@ -32,7 +19,7 @@ function activeSection() {
     return maxSection;
 };
 
-// build the nav
+// build the navbar using loop
 function buildNav() {
     for (let item of sections){
         let section = document.createElement("li");
@@ -45,6 +32,8 @@ function buildNav() {
 
 buildNav();
 
+/*setting active section with your-active-class and removing it from non active sections */
+
 function setActive () {
     window.addEventListener('scroll', function (event) {
         let section = activeSection();
@@ -55,10 +44,10 @@ function setActive () {
                 item.classList.remove('your-active-class');
             }
         }
-        // set corresponding header style
+        // setting the header style
         const active = document.querySelector('li[data-nav="' + section.id + '"]');
         active.classList.add('active__link');
-        // remove from other headers
+        // removing the active class from none active sections
         const headers = document.querySelectorAll('.menu');
         for (let item of headers) {
             console.log(item);
@@ -70,7 +59,7 @@ function setActive () {
 };
 setActive();
 
-// add scroll to event
+// adding the scroll to based on anchors
 function scrollToAnchor() {
     nav.addEventListener('click', function (scroll) {
         const selected = document.querySelector('#' + scroll.target.dataset.nav);
@@ -79,24 +68,8 @@ function scrollToAnchor() {
 };
 scrollToAnchor();
 
-// //Tried to change color of nav icons when clicked
-// function myFunction() {
-//     nav.addEventListener('click', function () {
-//         const selected = document.querySelector('#' + dataset.nav);
-//         selected.style.color = "rgb(136, 203, 171)"
-//     });
-// };
-// myFunction();
-
-
 // change default curser to pointer cursor
 function cursor() {
     document.getElementById("nav_links").style.cursor = "pointer";
 }
 cursor();
-
-
-
-
-
-
